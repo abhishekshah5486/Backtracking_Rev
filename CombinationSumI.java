@@ -11,7 +11,8 @@ public class CombinationSumI {
         int target = scn.nextInt();
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> curr = new ArrayList<>();
-        solveCombinationSumI(ans, curr, arr, 0, target, 0);
+        List<Integer> removedDuplicatesArr = removeDuplicates(arr);
+        solveCombinationSumI(ans, curr, removedDuplicatesArr, 0, target, 0);
         Collections.sort(ans, new LexicographicalListComparator());
         print2DList(ans);
         System.out.println(ans.size());
@@ -48,6 +49,18 @@ public class CombinationSumI {
             System.out.println();
         }
         System.out.println(" >");
+    }
+    public static List<Integer> removeDuplicates(List<Integer> list){
+        Set<Integer> set = new HashSet<>();
+        List<Integer> filteredList = new ArrayList<>();
+
+        for (int j=0; j<list.size(); j++){
+            if (!set.contains(list.get(j))){
+                set.add(list.get(j));
+                filteredList.add(list.get(j));
+            }
+        }
+        return filteredList;
     }
 }
 class LexicographicalListComparator implements Comparator<List<Integer>>{
