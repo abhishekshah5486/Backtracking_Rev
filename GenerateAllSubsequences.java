@@ -9,11 +9,12 @@ public class GenerateAllSubsequences {
         for (int j=0; j<x; j++){
             list.add(scn.nextInt());
         }
-        
+
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> temp = new ArrayList<>();
         generateAllSubsequences(ans, list, temp, 0);
         print2DList(ans);
+        System.out.println(ans.size());
 
         scn.close();
     }
@@ -30,9 +31,11 @@ public class GenerateAllSubsequences {
     }
     public static void print2DList(List<List<Integer>> lst){
         for (int j=0; j<lst.size(); j++){
-            for (int k=0; k<lst.get(0).size(); k++){
+            System.out.print("< ");
+            for (int k=0; k<lst.get(j).size(); k++){
                 System.out.print(lst.get(j).get(k) + " ");
             }
+            System.out.print(">");
             System.out.println();
         }
     }
