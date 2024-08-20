@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class RatAndMaze_I {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
