@@ -48,7 +48,6 @@ public class GenerateAllSubsequences {
         System.out.println();
     }
 }
-
 class LexicographicalListComparator implements Comparator<List<Integer>>{
     @Override
     public int compare(List<Integer> l1, List<Integer> l2){
