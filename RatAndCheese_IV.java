@@ -33,10 +33,13 @@ public class RatAndCheese_IV {
             }
             currPath.add(temp);
         }
-        solveRatAndCheeseIV(ans, maze, currPath, r1-1, r2-1, e1-1, e2-1, countCheese);
-        print3DList(ans);
-        System.out.println(ans.size());
-        
+        // solveRatAndCheeseIV(ans, maze, currPath, r1-1, r2-1, e1-1, e2-1, countCheese);
+        // print3DList(ans);
+        // System.out.println(ans.size());
+
+        int finalAns = solveRatAndCheeseIV(maze, r1-1, r2-1, e1-1, e2-1, countCheese);
+        System.out.println(finalAns);
+
         scn.close();
     }
     public static void solveRatAndCheeseIV( List<List<List<Integer>>> ans, List<List<Integer>> maze, List<List<Integer>> currPath, int r, int c, int e1, int e2, int countCheese){
@@ -74,6 +77,35 @@ public class RatAndCheese_IV {
         }
         maze.get(r).set(c, blockedVal);
         currPath.get(r).set(c, 0);
+    }
+    public static int solveRatAndCheeseIV(List<List<Integer>> maze, int r, int c, int e1, int e2, int countCheese){
+        // Base Conditions
+        if (r < 0 || c < 0 || r >= maze.size() || c >= maze.get(0).size()) return 0;
+        if (maze.get(r).get(c) == 1) return 0;
+        if (maze.get(r).get(c) == 0) countCheese--;
+
+        if (r == e1 && c == e2){
+            if (countCheese == 0) return 1;
+            return 0;
+        }
+        int[][] directions = {
+            {1, 0},
+            {0, 1},
+            {-1, 0},
+            {0, -1}
+        };
+        int finalAns = 0;
+        // Blocking the current cell
+        int blockedVal = maze.get(r).get(c);
+        maze.get(r).set(c, 1);
+        for (int j=0; j<directions.length; j++){
+            int nr = r + directions[j][0];
+            int nc = c + directions[j][1];
+            finalAns += solveRatAndCheeseIV(maze, nr, nc, e1, e2, countCheese);
+        }
+        maze.get(r).set(c, blockedVal);
+        return finalAns;
+
     }
     public static void print3DList(List<List<List<Integer>>> arr){
         for (int i=0; i<arr.size(); i++){
