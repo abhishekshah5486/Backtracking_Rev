@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class GenerateAllSubsequences {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
